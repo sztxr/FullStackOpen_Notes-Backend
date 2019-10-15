@@ -51,12 +51,12 @@ app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
 
-app.get('/notes', (request, response) => {
+app.get('/api/notes', (request, response) => {
   response.json(notes)
   // console.log(request.headers)
 })
 
-app.get('/notes/:id', (request, response) => {
+app.get('/api/notes/:id', (request, response) => {
   const id = Number(request.params.id)
   const note = notes.find(note => note.id === id)
   // if no note is found, respond with error status code
@@ -70,7 +70,7 @@ app.get('/notes/:id', (request, response) => {
 
 // DELETE
 
-app.delete('/notes/:id', (request, response) => {
+app.delete('/api/notes/:id', (request, response) => {
   const id = Number(request.params.id)
   notes = notes.filter(note => note.id !== id)
   // 204 no content
@@ -86,7 +86,7 @@ const generateId = () => {
   return maxId + 1
 }
 
-app.post('/notes', (request, response) => {
+app.post('/api/notes', (request, response) => {
   const body = request.body
 
   if (!body.content) {
